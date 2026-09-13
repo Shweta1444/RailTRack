@@ -33,9 +33,8 @@ button {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px;
-  margin-bottom: 40px;
+  gap: 14px;
+  padding: 8px 10px 28px;
 }
 
 .logoIcon {
@@ -51,14 +50,17 @@ button {
 }
 
 .logo h1 {
+  margin: 0;
+  color: #ffffff;
   font-size: 20px;
+  font-weight: 800;
 }
 
 .logo span {
   display: block;
-  font-size: 11px;
-  color: #9fb0c7;
-  margin-top: 3px;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 10px;
 }
 
 nav {

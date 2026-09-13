@@ -1,4 +1,4 @@
-import { Bell, Menu } from "lucide-react";
+import { Bell, Menu, UserRound, ChevronDown } from "lucide-react";
 
 function Header({
   activePage,
@@ -21,27 +21,38 @@ function Header({
 
       <div className="headerRight">
         <div className="roleSelector">
-          <label>Role</label>
+  <div className="roleIcon">
+    <UserRound size={17} />
+  </div>
 
-          <select
-            value={currentRole}
-            onChange={(event) =>
-              setCurrentRole(event.target.value)
-            }
-          >
-            <option value="Maintenance Department">
-              Maintenance Department
-            </option>
+  <div className="roleInfo">
+    <span className="roleLabel">CURRENT ROLE</span>
 
-            <option value="Controller">
-              Controller
-            </option>
+    <select
+      value={currentRole}
+      onChange={(event) =>
+        setCurrentRole(event.target.value)
+      }
+    >
+      <option value="Maintenance Department">
+        Maintenance Department
+      </option>
 
-            <option value="Station Master">
-              Station Master
-            </option>
-          </select>
-        </div>
+      <option value="Controller">
+        Controller
+      </option>
+
+      <option value="Station Master">
+        Station Master
+      </option>
+    </select>
+  </div>
+
+  <ChevronDown
+    className="roleArrow"
+    size={17}
+  />
+</div>
 
         <button className="notificationButton">
           <Bell size={20} />
@@ -55,4 +66,4 @@ function Header({
   );
 }
 
-export default Header;
+export default Header; 

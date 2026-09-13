@@ -23,8 +23,29 @@ function Dashboard({
       request.requestStatus === "Pending"
   ).length;
 
+  // Dynamic current date
+  const today = new Date();
+
+  const formattedDate = today.toLocaleDateString(
+    "en-IN",
+    {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }
+  );
+
+  const formattedDay = today.toLocaleDateString(
+    "en-IN",
+    {
+      weekday: "long",
+    }
+  );
+
   return (
-    <div>
+    <div className="dashboardPage">
+
+      {/* Dashboard Header */}
       <div className="pageHeading">
         <div>
           <p className="eyebrow">
@@ -42,12 +63,15 @@ function Dashboard({
         </div>
 
         <div className="dateCard">
-          <strong>09 September 2026</strong>
-          <span>Wednesday</span>
+          <strong>{formattedDate}</strong>
+          <span>{formattedDay}</span>
         </div>
       </div>
 
+
+      {/* Statistics */}
       <div className="statsGrid">
+
         <StatCard
           title="Today's Blocks"
           value="08"
@@ -78,15 +102,22 @@ function Dashboard({
           icon={ShieldCheck}
           type="success"
         />
+
       </div>
 
+
+      {/* Main Dashboard Grid */}
       <div className="dashboardGrid">
+
+        {/* AI Block Planning */}
         <div className="panel aiPanel">
+
           <div className="panelHeader">
+
             <div>
+
               <div className="aiTitle">
                 <Sparkles size={20} />
-
                 <span>AI BLOCK PLANNING</span>
               </div>
 
@@ -99,14 +130,18 @@ function Dashboard({
                 train schedules and asset availability
                 to recommend conflict-free blocks.
               </p>
+
             </div>
 
             <div className="aiStatus">
               AI Ready
             </div>
+
           </div>
 
+
           <div className="aiMetrics">
+
             <div>
               <strong>3</strong>
               <span>Maintenance Tasks</span>
@@ -121,7 +156,9 @@ function Dashboard({
               <strong>270 min</strong>
               <span>Total Block Time</span>
             </div>
+
           </div>
+
 
           <button
             className="primaryButton"
@@ -132,34 +169,47 @@ function Dashboard({
             <Sparkles size={17} />
             Open AI Block Planner
           </button>
+
         </div>
 
+
+        {/* Notifications */}
         <div className="panel">
+
           <div className="panelHeader">
+
             <div>
               <h3>Recent Notifications</h3>
               <p>Latest operational updates</p>
             </div>
+
           </div>
 
+
           <div className="notificationList">
+
             {notifications
               .slice(0, 5)
               .map((notification) => (
+
                 <div
                   className="notificationItem"
                   key={notification.id}
                 >
+
                   <div className="notificationIcon">
-                    {notification.type ===
-                    "success" ? (
+
+                    {notification.type === "success" ? (
                       <CheckCircle size={18} />
                     ) : (
                       <AlertTriangle size={18} />
                     )}
+
                   </div>
 
+
                   <div>
+
                     <strong>
                       {notification.title}
                     </strong>
@@ -167,25 +217,40 @@ function Dashboard({
                     <p>
                       {notification.message}
                     </p>
+
                   </div>
+
                 </div>
+
               ))}
+
           </div>
+
         </div>
+
       </div>
 
+
+      {/* Operational Workflow */}
       <div className="panel workflowPanel">
+
         <div className="panelHeader">
+
           <div>
+
             <h3>Operational Workflow</h3>
 
             <p>
               End-to-end maintenance block approval
             </p>
+
           </div>
+
         </div>
 
+
         <div className="workflow">
+
           <WorkflowStep
             number="01"
             title="Department Request"
@@ -215,11 +280,15 @@ function Dashboard({
             title="Block Released"
             text="Approved maintenance block is released."
           />
+
         </div>
+
       </div>
+
     </div>
   );
 }
+
 
 function WorkflowStep({
   number,
@@ -228,6 +297,7 @@ function WorkflowStep({
 }) {
   return (
     <div className="workflowStep">
+
       <div className="workflowNumber">
         {number}
       </div>
@@ -236,8 +306,10 @@ function WorkflowStep({
         <strong>{title}</strong>
         <p>{text}</p>
       </div>
+
     </div>
   );
 }
+
 
 export default Dashboard;
