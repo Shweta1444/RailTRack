@@ -44,13 +44,17 @@ function Sidebar({
   return (
     <aside className="sidebar">
       <div className="logo">
-        <div className="logoIcon">R</div>
+  <img
+    src="/railtrack_logo.png"
+    alt="RailTRack Logo"
+    className="sidebarLogo"
+  />
 
-        <div>
-          <h1>RailTRack</h1>
-          <span>Smart Railway Operations</span>
-        </div>
-      </div>
+  <div>
+    <h1>RailTRack</h1>
+    <span>Smart Railway Operations</span>
+  </div> 
+</div>
 
       <nav>
         {menuItems.map((item) => {

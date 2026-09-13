@@ -23,6 +23,14 @@ function App() {
 
   const [showWelcome, setShowWelcome] = useState(true);
 
+   // =====================================================
+  // MEMO SUCCESS MODAL
+  // =====================================================
+
+  const [showMemoSuccess, setShowMemoSuccess] = useState(false);
+  const [memoSuccessAsset, setMemoSuccessAsset] = useState("");
+
+
   // =====================================================
   // NAVIGATION
   // =====================================================
@@ -220,9 +228,8 @@ function App() {
       ...previous,
     ]);
 
-    alert(
-      `Memo request submitted for ${item.asset}.`
-    );
+    setMemoSuccessAsset(item.asset);
+setShowMemoSuccess(true);
   };
 
   // =====================================================
@@ -775,94 +782,216 @@ function App() {
     }
   };
 
-  // =====================================================
-  // WELCOME PAGE
-  // =====================================================
+ // =====================================================
+// WELCOME PAGE
+// =====================================================
 
-  if (showWelcome) {
-    return (
-      <div className="welcomePage">
-        <div className="welcomeOverlay">
-          <div className="welcomeCard">
+if (showWelcome) {
+  return (
+    <div className="welcomePage">
+      <div className="welcomeContainer">
 
-            <div className="welcomeLogo">
-              <img
-                src="/railtrack-logo.png"
-                alt="RailTRack"
-              />
-            </div>
+        {/* TOP BAR */}
+        <div className="welcomeTopBar">
+          <img
+            src="/railtrack_logo.png"
+            alt="RailTRack"
+            className="welcomeLogo"
+          />
+
+          <div className="welcomeStatus">
+            <span className="statusDot"></span>
+            AI-Powered Platform
+          </div>
+        </div>
+
+        {/* MAIN CONTENT */}
+        <div className="welcomeContent">
+
+          {/* LEFT SIDE */}
+          <div className="welcomeText">
 
             <p className="welcomeEyebrow">
               SMART RAILWAY MAINTENANCE PLATFORM
             </p>
 
             <h1>
-              Welcome to{" "}
-              <span>RailTRack</span>
+              Smarter Maintenance.
+              <br />
+              <span>Safer Railways.</span>
             </h1>
 
             <p className="welcomeDescription">
-              AI-powered block planning for
-              smarter, safer and more efficient
-              railway maintenance operations.
+              RailTRack uses AI-powered block planning to help
+              railway teams schedule maintenance efficiently,
+              reduce traffic disruption and improve operational safety.
             </p>
 
+            {/* FEATURES */}
             <div className="welcomeFeatures">
 
-              <div>
-                <Sparkles size={20} />
-                <span>
-                  AI Block Optimization
-                </span>
+              <div className="featureItem">
+                <div className="featureIcon">
+                  <Sparkles size={19} />
+                </div>
+                <div>
+                  <strong>AI Block Optimization</strong>
+                  <span>Intelligent maintenance planning</span>
+                </div>
               </div>
 
-              <div>
-                <Train size={20} />
-                <span>
-                  Traffic-Aware Scheduling
-                </span>
+              <div className="featureItem">
+                <div className="featureIcon">
+                  <Train size={19} />
+                </div>
+                <div>
+                  <strong>Traffic-Aware Scheduling</strong>
+                  <span>Minimize disruption to railway operations</span>
+                </div>
               </div>
 
-              <div>
-                <ShieldCheck size={20} />
-                <span>
-                  Multi-Level Approval
-                </span>
+              <div className="featureItem">
+                <div className="featureIcon">
+                  <ShieldCheck size={19} />
+                </div>
+                <div>
+                  <strong>Multi-Level Approval</strong>
+                  <span>Controlled and secure block management</span>
+                </div>
               </div>
 
             </div>
-   <img
-  src="/railtrack-logo.png"
-  alt="RailTRack Logo"
-  className="railtrack-logo"
-/>
+
+            {/* BUTTON */}
             <button
               className="welcomeButton"
-              onClick={() =>
-                setShowWelcome(false)
-              }
+              onClick={() => setShowWelcome(false)}
             >
               Enter RailTRack
               <span>→</span>
             </button>
 
             <p className="welcomeFooter">
-              AI-Powered Automatic Block Planning
-              System
+              AI-Powered Automatic Block Planning System
             </p>
 
           </div>
+
+          {/* RIGHT SIDE VISUAL */}
+          <div className="welcomeVisual">
+
+            <div className="visualCard">
+
+              <div className="visualHeader">
+                <span>RAILTRACK AI</span>
+                <span className="liveBadge">
+                  <span></span> LIVE
+                </span>
+              </div>
+
+              <div className="railVisual">
+                <Train size={58} strokeWidth={1.5} />
+              </div>
+
+              <h3>
+                Intelligent Railway
+                <br />
+                Maintenance
+              </h3>
+
+              <p>
+                Plan maintenance blocks with
+                traffic, priority and safety in mind.
+              </p>
+
+              <div className="visualStats">
+                <div>
+                  <strong>AI</strong>
+                  <span>Optimization</span>
+                </div>
+
+                <div>
+                  <strong>24/7</strong>
+                  <span>Monitoring</span>
+                </div>
+
+                <div>
+                  <strong>3</strong>
+                  <span>Departments</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
+
       </div>
-    );
-  }
+    </div>
+  );
+}
+
+ 
 
   // =====================================================
   // MAIN APPLICATION
   // =====================================================
 
-  return (
+  return ( 
     <div className="app">
+    {showMemoSuccess && (
+  <div className="modalOverlay">
+    <div className="memoSuccessModal">
+
+      <div className="successIconWrapper">
+        <CheckCircle size={34} />
+      </div>
+
+      <div className="successModalContent">
+        <span className="successLabel">
+          MEMO REQUEST
+        </span>
+
+        <h2>Request Submitted Successfully</h2>
+
+        <p>
+          Your maintenance memo request for{" "}
+          <strong>{memoSuccessAsset}</strong> has been
+          submitted successfully.
+        </p>
+
+        <div className="memoInfoBox">
+          <div>
+            <span>Asset</span>
+            <strong>{memoSuccessAsset}</strong>
+          </div>
+
+          <div>
+            <span>Status</span>
+            <strong className="pendingText">
+              Pending Controller Approval
+            </strong>
+          </div>
+        </div>
+
+        <div className="successModalFooter">
+          <CheckCircle size={16} />
+          Controller approval is required before
+          the maintenance block can be scheduled.
+        </div>
+
+        <button
+          className="modalDoneButton"
+          onClick={() => setShowMemoSuccess(false)}
+        >
+          Continue
+        </button>
+      </div>
+
+    </div>
+  </div>
+)}
 
       <Sidebar
         activePage={activePage}
