@@ -13,6 +13,8 @@ import Maintenance from "./pages/Maintenance";
 import MemoRequests from "./pages/MemoRequests";
 import Approvals from "./pages/Approvals";
 import BlockPlanning from "./pages/BlockPlanning";
+import About from "./pages/About";
+
 
 import "./App.css";
 
@@ -734,6 +736,27 @@ setShowMemoSuccess(true);
             }
           />
         );
+      case "Final Block":
+        return (
+          <FinalBlockPage
+            blockPlanRequest={
+              blockPlanRequest
+            }
+            finalBlockReleased={
+              finalBlockReleased
+            }
+            currentRole={currentRole}
+            releaseFinalBlock={
+              releaseFinalBlock
+            }
+          />
+        );
+
+      case "About":
+        return <About />;
+
+      default:
+        return null;  
 
       // =================================================
       // BLOCK PLANNING
@@ -777,8 +800,6 @@ setShowMemoSuccess(true);
           />
         );
 
-      default:
-        return null;
     }
   };
 
