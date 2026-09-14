@@ -5,6 +5,7 @@ import {
   FileText,
   CheckCircle,
   ShieldCheck,
+  Info,
 } from "lucide-react";
 
 function Sidebar({
@@ -39,6 +40,10 @@ function Sidebar({
       name: "Final Block",
       icon: ShieldCheck,
     },
+    {
+  name: "About",
+  icon: Info,
+},
   ];
 
   return (
